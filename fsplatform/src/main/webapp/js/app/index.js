@@ -1,7 +1,7 @@
 $().ready(function() {
 	// user profile
     $('#user').text($.FSP.config.username);
-    
+
     // logout
     $('#logout').click(function() {
         $.FSP.unauthenciate();
