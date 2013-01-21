@@ -49,6 +49,13 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+    <script data-dojo-config="async: 1, dojoBlankHtmlUrl: '/blank.html',
+            packages: [ {
+                name: 'custom',
+                location: location.pathname.replace(/\/[^/]+$/, '') + '/js/custom'
+            } ]"
+        src="//ajax.googleapis.com/ajax/libs/dojo/1.8.1/dojo/dojo.js"></script>
+
   </head>
 
   <body>
@@ -66,13 +73,15 @@
 
     </div> <!-- /container -->
 
-    <!--  dojo library -->
-    <script data-dojo-config="async: 1, dojoBlankHtmlUrl: '<%=request.getContextPath()%>/blank.html',
-            packages: [ {
-                name: 'fsp',
-                location: '<%=request.getContextPath()%>/js/fsp'
-            }]"
-            src="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojo/dojo.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery and it's plugins -->
+    <script src="<%=request.getContextPath()%>/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/js/jquery.cookie.js" type="text/javascript"></script>
+    <!-- bootstrap -->
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <!-- fspntry -->
+    <script src="<%=request.getContextPath()%>/js/fsp/core.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/js/fsp/auth.js" type="text/javascript"></script>
     <!-- application -->
     <script src="<%=request.getContextPath()%>/js/app/login.js" type="text/javascript"></script>
 
