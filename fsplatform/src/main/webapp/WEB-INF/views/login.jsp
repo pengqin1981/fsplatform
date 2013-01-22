@@ -29,8 +29,7 @@
            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
                 box-shadow: 0 1px 2px rgba(0,0,0,.05);
       }
-      .form-signin .form-signin-heading,
-      .form-signin .checkbox {
+      .form-signin .form-signin-heading {
         margin-bottom: 10px;
       }
       .form-signin input[type="text"],
@@ -43,6 +42,7 @@
 
     </style>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dijit/themes/claro/claro.css" rel="stylesheet" >
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -51,21 +51,22 @@
 
   </head>
 
-  <body>
+  <body class="claro">
 
     <div class="container">
 
       <form class="form-signin">
         <h2 class="form-signin-heading">登录入口</h2>
         <label>用户名:</label>
-        <input id="username" type="text" class="input-block-level" placeholder="请输入用户名">
+        <input id="username" name="user.username" type="text" class="input-block-level" placeholder="请输入用户名">
         <label>密码:</label>
-        <input id="password" type="password" class="input-block-level" placeholder="请输入密码">
+        <input id="password" name="user.password" type="password" class="input-block-level" placeholder="请输入密码">
         <button id="loginBtn" class="btn btn-large btn-primary" type="button">登录</button>
       </form>
 
     </div> <!-- /container -->
 
+    <div id="dialog"></div>
     <!--  dojo library -->
     <script data-dojo-config="async: 1, dojoBlankHtmlUrl: '<%=request.getContextPath()%>/blank.html',
             packages: [ {
