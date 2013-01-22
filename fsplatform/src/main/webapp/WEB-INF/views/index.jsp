@@ -18,8 +18,8 @@
 </head>
 
 <body class="claro">
-    <div id="appLayout" class="demoLayout" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design: 'headline', gutters:false">
-        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'" style="height: 40px;">
+    <div id="appLayout" class="demoLayout" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design: 'headline', gutters: false, liveSplitters:false">
+        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top', splitter:false" style="height: 41px;">
             <div class="navbar navbar-inverse navbar-fixed-top">
               <div class="navbar-inner">
                 <div class="container">
@@ -44,7 +44,13 @@
               </div>
             </div>
         </div>
-        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center', tabPosition: 'bottom'">
+        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center', tabPosition: 'bottom', splitter:false">
+        <div class="container">
+    
+          <h1>Bootstrap starter template</h1>
+          <p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
+    
+        </div> <!-- /container -->
         </div>
     </div>
     <!-- load dojo and provide config via data attribute -->
