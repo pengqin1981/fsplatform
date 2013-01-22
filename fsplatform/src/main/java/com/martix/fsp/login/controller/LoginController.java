@@ -26,8 +26,6 @@ public class LoginController {
 	@RequestMapping(value = "/unsecured/api/auth", method = RequestMethod.POST)  
 	@ResponseBody
 	public ResponseEntity<?> authenciate(@ModelAttribute("user") User user, Model model, HttpServletResponse response) {
-		System.out.println(user.getUsername());
-		System.out.println(user.getPassword());
 		if (user.getUsername().equals("admin") && 
 			user.getPassword().equals("passw0rd")) {
 			return new ResponseEntity(HttpStatus.OK);
