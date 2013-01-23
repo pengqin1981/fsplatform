@@ -28,7 +28,7 @@ require([
                 password
             ).then(function(response) {
                 if (response === true) {
-                    window.location.href = "./index.html"
+                    window.location.href = "./index.htm"
                 } else {
                     dialog.set("content", "抱歉,账号或者密码不匹配,请重新再试！");
                     dialog.show();

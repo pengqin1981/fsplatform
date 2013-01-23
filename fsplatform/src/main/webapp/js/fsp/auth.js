@@ -15,6 +15,7 @@ define([
                 preventCache: true
             }).then(function() {
                 cookie("fspUserId", username, { path: core.getBasePrefix() });
+                cookie("fspAuthToken", "token", { path: core.getBasePrefix() });
                 return true;
             }, function(err) {
                 return err;

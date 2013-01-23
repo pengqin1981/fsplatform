@@ -6,13 +6,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class IndexController {
-	@RequestMapping("/blank.html")
+	@RequestMapping("/blank.htm")
 	public ModelAndView blankPage() {
 		ModelAndView login = new ModelAndView("/WEB-INF/views/blank.html");
 		return login;
 	}
 
-	@RequestMapping("/index.html")
+	@RequestMapping("/index.htm")
 	public ModelAndView loginPage() {
 		ModelAndView login = new ModelAndView("/WEB-INF/views/index.jsp");
 		login.addObject("version", "0.1");

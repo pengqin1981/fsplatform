@@ -16,7 +16,7 @@ import com.martix.fsp.user.domain.User;
 
 @Controller
 public class LoginController {
-	@RequestMapping("/login.html")
+	@RequestMapping("/login.htm")
 	public ModelAndView loginPage() {
 		ModelAndView login = new ModelAndView("/WEB-INF/views/login.jsp");
 		login.addObject("version", "0.1");

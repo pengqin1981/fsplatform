@@ -18,41 +18,7 @@
 </head>
 
 <body class="claro">
-    <div id="appLayout" class="demoLayout" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design: 'headline', gutters: false, liveSplitters:false">
-        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top', splitter:false" style="height: 41px;">
-            <div class="navbar navbar-inverse navbar-fixed-top">
-              <div class="navbar-inner">
-                <div class="container">
-                  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </a>
-                  <a class="brand" href="#">金融服务管理平台</a>
-                  <div class="nav-collapse collapse">
-                    <p class="navbar-text pull-right">
-                      <a href="#" class="navbar-link">管理员</a>&nbsp;&nbsp;&nbsp;
-                      <a href="#" class="navbar-link">关于软件</a>&nbsp;&nbsp;
-                      <a href="#" class="navbar-link">退出</a>
-                    </p>
-                    <ul class="nav">
-                      <li class="active"><a href="#">首页</a></li>
-                      <li><a href="#about">产品维护</a></li>
-                    </ul>
-                  </div><!--/.nav-collapse -->
-                </div>
-              </div>
-            </div>
-        </div>
-        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center', tabPosition: 'bottom', splitter:false">
-        <div class="container">
-    
-          <h1>Bootstrap starter template</h1>
-          <p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
-    
-        </div> <!-- /container -->
-        </div>
-    </div>
+    <div id="fsp"></div>
     <!-- load dojo and provide config via data attribute -->
     <script data-dojo-config="async: 1, dojoBlankHtmlUrl: '<%=request.getContextPath()%>/blank.html',
             packages: [ {
@@ -60,13 +26,8 @@
                 location: '<%=request.getContextPath()%>/js/fsp'
             }]"
             src="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojo/dojo.js"></script>
-    <script>
-        require(["dojo/parser", "dojo/ready", "dijit/layout/BorderContainer", "dijit/layout/TabContainer", "dijit/layout/ContentPane"], function(parser, ready){
-            ready(function(){
-                parser.parse();
-            });
-        });
-    </script>
+    <!-- application -->
+    <script src="<%=request.getContextPath()%>/js/app/index.js" type="text/javascript"></script>
 </body>
 </html>
 
