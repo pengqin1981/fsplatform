@@ -4,7 +4,7 @@ require([
      "fsp/Application"
  ], function(dom, ready, Application) {
     ready(function() {
-        var application = new Application();
-        application.placeAt(dom.byId('fsp'));
+        var application = new Application({}, "fsp");
+        application.startup();
     });
  });

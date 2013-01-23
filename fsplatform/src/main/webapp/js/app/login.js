@@ -24,11 +24,13 @@ require([
                 return;
             }
             auth.authenciate(
-                    username,
+                username,
                 password
             ).then(function(response) {
                 if (response === true) {
-                    window.location.href = "./index.htm"
+                    setTimeout(function() {
+                        window.location.href = "./index.htm";
+                    }, 100);
                 } else {
                     dialog.set("content", "抱歉,账号或者密码不匹配,请重新再试！");
                     dialog.show();
