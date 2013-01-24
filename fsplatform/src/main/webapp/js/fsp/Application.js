@@ -83,7 +83,7 @@ define([
         },
 
         onProfile: function() {
-            console.info('show profile');
+            console.info('show profile!');
         },
 
         onAbout: function() {
