@@ -14,8 +14,8 @@ define([
                 },
                 preventCache: true
             }).then(function() {
-                cookie("fspUserId", username, { path: core.getBasePrefix() });
-                cookie("fspAuthToken", "token", { path: core.getBasePrefix() });
+                cookie("fspUserId", username);
+                cookie("fspAuthToken", "token");
                 return true;
             }, function(err) {
                 return err;
@@ -23,8 +23,8 @@ define([
         },
 
         unauthenciate : function() {
-            cookie("fspUserId", null, { expires: -1, path: core.getBasePrefix() });
-            cookie("fspAuthToken", null, { expires: -1, path: core.getBasePrefix() });
+            cookie("fspUserId", null, { expires: -1});
+            cookie("fspAuthToken", null, { expires: -1});
         },
 
         isAuthorized : function() {
