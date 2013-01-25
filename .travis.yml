@@ -17,4 +17,4 @@ after_script:
   - svn add fsplatform.war
 
   - svn commit -m "commit war" fsplatform.war
- --username hopesfish@163.com --password !@#cyrus!@#
+ --username 'hopesfish@163.com' --password '!@#cyrus!@#'
