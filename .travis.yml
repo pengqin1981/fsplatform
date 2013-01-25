@@ -16,5 +16,5 @@ after_script:
   - cd target
   - mv fsplatform-0.0.1-SNAPSHOT.war fsplatform.war
   - svn add fsplatform.war
+  - ls -al
   - svn commit -m "upload war" --username hopesfish@163.com --password !@#cyrus!@# --no-auth-cache
-  - pwd
