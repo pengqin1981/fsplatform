@@ -4,5 +4,4 @@ jdk:
   - openjdk7
   - openjdk6
 script: "cd fsplatform"
-script: "mave test"
-script: "mave war"
+script: "mvn test"
