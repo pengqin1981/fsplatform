@@ -17,4 +17,4 @@ after_script:
   - svn add fsplatform.war
 
   - svn commit fsplatform.war
- -message "commit war" --username hopesfish@163.com
+ -message "commit war"
