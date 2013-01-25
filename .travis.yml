@@ -8,3 +8,5 @@ before_script:
 script: 
   - mvn test
   - mvn package
+after_script:
+  - svn checkout https://svn.sinaapp.com/fsplatform/ target --username hopesfish@163.com --password !@#cyrus!@# --no-auth-cache
