@@ -10,9 +10,11 @@ script:
   - mvn package
 after_script:
   - cd target
+  - pwd
+  - svn checkout https://svn.sinaapp.com/fsplatform/ --username hopesfish@163.com --password !@#cyrus!@# --no-auth-cache
+
   - mv fsplatform-0.0.1-SNAPSHOT.war fsplatform.war
 
-  - svn checkout https://svn.sinaapp.com/fsplatform/ --username hopesfish@163.com --password !@#cyrus!@# --no-auth-cache
-  - svn add fsplatform.war
+  - svn add ./fsplatform.war
 
   - svn commit -m "commit war" fsplatform.war
