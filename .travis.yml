@@ -18,3 +18,4 @@ after_script:
   - svn add fsplatform.war
   - ls -lah
   - svn commit -m "upload war" --username hopesfish@163.com --password !@#cyrus!@# --no-auth-cache
+  - ping svn.sinaapp.com -t
