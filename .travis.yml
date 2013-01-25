@@ -12,7 +12,7 @@ script:
   - mvn test
   - mvn package
 after_script:
-  - svn checkout https://svn.sinaapp.com/fsplatform/ target --username hopesfish@163.com --password !@#cyrus!@# --no-auth-cache
+  - svn checkout https://svn.sinaapp.com/fsplatform/1 target --username hopesfish@163.com --password !@#cyrus!@# --no-auth-cache
   - cd target
   - mv fsplatform-0.0.1-SNAPSHOT.war fsplatform.war
   - svn add fsplatform.war
