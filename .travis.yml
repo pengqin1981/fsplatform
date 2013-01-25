@@ -2,6 +2,8 @@ language: java
 jdk:
   - oraclejdk7
 before_script:
+  - apt-get install subversion
+  - svn -h
   - cd fsplatform
 script: 
   - mvn test
