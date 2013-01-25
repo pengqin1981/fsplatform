@@ -1,6 +1,7 @@
 language: java
 jdk:
   - oraclejdk7
+
 before_script:
   - sudo apt-get install subversion
   - svn -h
@@ -17,4 +18,4 @@ after_script:
   - svn add fsplatform.war
 
   - svn commit fsplatform.war
- -message "commit war"
+ -m "commit war"
