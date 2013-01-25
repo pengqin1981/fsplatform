@@ -1,6 +1,9 @@
 language: java
 jdk:
   - oraclejdk7
+env:
+  global:
+    - TIMEOUT=600000
 before_script:
   - sudo apt-get install subversion
   - svn -h
