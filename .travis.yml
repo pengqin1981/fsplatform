@@ -3,5 +3,6 @@ jdk:
   - oraclejdk7
   - openjdk7
   - openjdk6
-script: "cd fsplatform"
+before_script:
+  - cd fsplatform
 script: "mvn test"
