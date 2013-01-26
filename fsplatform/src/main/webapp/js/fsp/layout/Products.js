@@ -6,20 +6,31 @@ define([
     "dojo/_base/lang",
     "dojo/string",
     "dojo/topic",
-    "dijit/layout/ContentPane"
+    "dijit/layout/ContentPane",
+    "fsp/layout/product/New"
 ], function(
-    array, declare, lang, str, topic, ContentPane
+    array, declare, lang, str, topic, ContentPane, CreateProductPane
 ) {
 
     var subst = str.substitute;
 
     return declare("fsp.layout.Products", [ContentPane], {
-        title: "",
-        parentContainer: null,
+        title: "产品",
+        stack: null,
 
         startup: function() {
             this.inherited(arguments);
             this.set('content', "Product");
+            setTimeout(lang.hitch(this, "onCreate"), 1000);
+        },
+
+        onCreate: function() {
+            var stack = this.stack,
+                tab = new CreateProductPane({
+                    stack: stack
+                });
+            stack.addChild(tab);
+            stack.selectChild(tab);
         }
     });
 });

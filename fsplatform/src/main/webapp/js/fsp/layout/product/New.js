@@ -13,13 +13,13 @@ define([
 
     var subst = str.substitute;
 
-    return declare("fsp.layout.Dashboard", [ContentPane], {
-        title: "首页",
+    return declare("fsp.layout.product.New", [ContentPane], {
+        title: "新增产品",
         stack: null,
 
         startup: function() {
             this.inherited(arguments);
-            this.set('content', "Dashboard");
+            this.set('content', "New Product");
         }
     });
 });

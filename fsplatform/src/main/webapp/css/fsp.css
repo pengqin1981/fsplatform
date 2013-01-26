@@ -11,3 +11,6 @@ body {
 #fsp, .container{
     height: 100%;
 }
+.claro .dijitContentPane {
+	padding: 0.2em;
+}

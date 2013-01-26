@@ -9,13 +9,16 @@ define([
     "dojo/query",
     "dojo/dom-attr",
     "dojo/NodeList-dom",
+    "dijit/layout/BorderContainer",
     "dijit/layout/StackContainer",
+    "fsp/widget/BreadCrumb",
     "fsp/auth",
     "fsp/layout/Dashboard",
     "fsp/layout/Products"
 ], function(
     declare, _WidgetBase, _TemplatedMixin, template,
-    lang, on, dom, query, domAttr, nodeList, StackContainer, 
+    lang, on, dom, query, domAttr, nodeList,
+    BorderContainer, StackContainer, BreadCrumb,
     auth, DashboardPane, ProductsPane) {
  
     return declare([_WidgetBase, _TemplatedMixin], {
@@ -45,10 +48,13 @@ define([
         },
 
         initStack: function() {
-            var stack = this.stack = new StackContainer({
-                style: "height: 100%; width: 100%;",
+            var controller, stack;
+
+            stack = this.stack = new StackContainer({
+                style: "height: 100%; width: 100%;"
             }, "stack");
             stack.startup();
+
             this.switchTab("dashboard", DashboardPane);
         },
 
@@ -65,10 +71,29 @@ define([
         },
 
         switchTab: function(name, pane) {
-            var tab = this.tabs[name];
+            var tab = this.tabs[name+"Tab"], innerStack, controller;
+            
             if (!tab) {
-                tab = new pane();
-                this.tabs[name] = tab;
+                tab = this.tabs[name+"Tab"] = new BorderContainer({
+                    gutters: false,
+                    style: "height: 100%; width: 100%;"
+                });
+
+                innerStack = new StackContainer({
+                    style: "height: 100%; width: 100%;",
+                    region: 'center'
+                });
+                innerStack.addChild(new pane({
+                    stack: innerStack
+                }));
+                tab.addChild(innerStack);
+
+                controller = new BreadCrumb({
+                    containerId: innerStack.get('id'),
+                    region: 'top'
+                });
+                tab.addChild(controller);
+ 
                 this.stack.addChild(tab);
             }
             this.stack.selectChild(tab);
