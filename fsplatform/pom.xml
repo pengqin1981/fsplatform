@@ -33,6 +33,7 @@
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -218,17 +219,21 @@
 		</dependency>
 	</dependencies>
 
-        <build>  
-            <plugins>  
-              <plugin>  
-                <artifactId>maven-compiler-plugin</artifactId>  
-                <configuration>  
-                  <source>1.6</source>  
-                  <target>1.6</target>  
-                </configuration>  
-              </plugin>  
-            </plugins>  
-        </build>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 	<repositories>
 		<repository>
