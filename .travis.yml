@@ -14,8 +14,8 @@ script:
 after_script:
   - svn checkout https://svn.sinaapp.com/fsplatform/1 target --username hopesfish@163.com --password !@#cyrus!@# --no-auth-cache
   - cd target
-  - mv fsplatform-0.0.1-SNAPSHOT.war fsplatform.war
+  - mv -rf fsplatform-0.0.1-SNAPSHOT.war fsplatform.war
   - svn add fsplatform.war
   - ls -lah
   - svn commit -m "upload war" --username hopesfish@163.com --password !@#cyrus!@# --no-auth-cache
-  - ping svn.sinaapp.com -t
+  - ping svn.sinaapp.com -i 10000
