@@ -6,6 +6,5 @@ require([
     ready(function() {
         var application = new Application({}, "fsp");
         application.startup();
-        
     });
  });
