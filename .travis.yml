@@ -19,5 +19,4 @@ after_script:
   - mv -f fsplatform-0.0.1-SNAPSHOT.war fsplatform.war
   - svn add fsplatform.war
   - ls -lah
-  - ping svn.sinaapp.com -c 100
   - svn commit -m "upload new war" --username cloverren@163.com --password cloverren --no-auth-cache
