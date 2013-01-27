@@ -39,6 +39,7 @@ define([
             this.standby.show();
             setTimeout(function() {
                 that.standby.hide();
+                topic.publish("success-message", "新增成功!");
             }, 3000);
         },
 

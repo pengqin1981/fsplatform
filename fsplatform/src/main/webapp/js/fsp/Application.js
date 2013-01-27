@@ -1,24 +1,28 @@
 define([
     "dojo/_base/declare",
-    "dijit/_WidgetBase",
-    "dijit/_TemplatedMixin",
-    "dojo/text!./templates/Application.html",
+    "dojo/_base/window",
+    "dijit/registry",
+    "dojo/topic",
     "dojo/_base/lang",
     "dojo/on",
     "dojo/dom",
     "dojo/query",
     "dojo/dom-attr",
     "dojo/NodeList-dom",
+    "dijit/_WidgetBase",
+    "dijit/_TemplatedMixin",
+    "dojo/text!./templates/Application.html",
     "dijit/layout/BorderContainer",
     "dijit/layout/StackContainer",
+    "dojox/widget/Toaster",
     "fsp/widget/BreadCrumb",
     "fsp/auth",
     "fsp/layout/Dashboard",
     "fsp/layout/Products"
 ], function(
-    declare, _WidgetBase, _TemplatedMixin, template,
-    lang, on, dom, query, domAttr, nodeList,
-    BorderContainer, StackContainer, BreadCrumb,
+    declare, win, registry, topic, lang, on, dom, query, domAttr, nodeList,
+    _WidgetBase, _TemplatedMixin, template, BorderContainer, StackContainer, 
+    Toaster, BreadCrumb,
     auth, DashboardPane, ProductsPane) {
  
     return declare([_WidgetBase, _TemplatedMixin], {
@@ -27,7 +31,7 @@ define([
 
         tabs: {},
 
-        postCreate: function() {
+        buildRendering: function() {
             var that = this;
 
             this.inherited(arguments);
@@ -37,26 +41,13 @@ define([
                 return;
             }
 
-            setTimeout(function() {
-                that.init();
-            }, 100);
+            setTimeout(lang.hitch(this, "init"), 500);
         },
 
         init: function() {
             this.attachEvent();
             this.initStack();
-        },
-
-        initStack: function() {
-            var controller, stack;
-
-            stack = this.stack = new StackContainer({
-                style: "height: 100%; width: 100%;"
-            }, "stack");
-            stack.startup();
-
-            this.switchTab("products", ProductsPane);
-            //this.switchTab("dashboard", DashboardPane);
+            this.initMessager();
         },
 
         attachEvent: function() {
@@ -69,6 +60,18 @@ define([
                    )
                 );
             });
+        },
+
+        initStack: function() {
+            var controller, stack;
+
+            stack = this.stack = new StackContainer({
+                style: "height: 100%; width: 100%;"
+            }, "stack");
+            stack.startup();
+
+            this.switchTab("products", ProductsPane);
+            //this.switchTab("dashboard", DashboardPane);
         },
 
         switchTab: function(name, pane) {
@@ -119,6 +122,31 @@ define([
         onLogout: function() {
             auth.unauthenciate();
             window.location.href = "./login.htm";
+        },
+
+        initMessager: function() {
+            var toaster = new Toaster({
+                positionDirection: "br-up",
+                duration: 3500
+            });
+            toaster.placeAt(win.body());
+
+            function publishMessage(message, type) {
+                toaster.setContent(message, type);
+                toaster.show();
+            }
+            topic.subscribe("error-message", function(message) {
+                publishMessage(message, "error");
+            });
+            topic.subscribe("warning-message", function(message) {
+                publishMessage(message, "warning");
+            });
+            topic.subscribe("success-message", function(message) {
+                publishMessage(message, "success");
+            });
+            topic.subscribe("info-message", function(message) {
+                publishMessage(message, "info");
+            });
         }
     });
  
