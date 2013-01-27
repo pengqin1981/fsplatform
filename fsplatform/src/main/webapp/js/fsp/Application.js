@@ -55,7 +55,8 @@ define([
             }, "stack");
             stack.startup();
 
-            this.switchTab("dashboard", DashboardPane);
+            this.switchTab("products", ProductsPane);
+            //this.switchTab("dashboard", DashboardPane);
         },
 
         attachEvent: function() {
@@ -72,7 +73,7 @@ define([
 
         switchTab: function(name, pane) {
             var tab = this.tabs[name+"Tab"], innerStack, controller;
-            
+
             if (!tab) {
                 tab = this.tabs[name+"Tab"] = new BorderContainer({
                     gutters: false,
