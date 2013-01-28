@@ -12,5 +12,9 @@ body {
     height: 100%;
 }
 .tundra .dijitContentPane {
-	padding: 0.2em;
+	padding: 0px;
+}
+.dijitStackController .crumb a, .dijitStackController .crumb span{
+    padding-right: 10px;
+    color: #333;
 }
