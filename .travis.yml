@@ -3,20 +3,21 @@ jdk:
   - oraclejdk7
 env:
   global:
-    - TIMEOUT=6000000
+    - TIMEOUT=600000
 before_script:
   - sudo apt-get install subversion
   - svn -h
-  - cd fsplatform
 script: 
-  - mvn test
+  - cd com.martix.fsp.api
+  - mvn install
+  - cd ../com.martix.fsp.operating
   - mvn package
 after_script:
   - svn checkout https://svn.sinaapp.com/fsplatform/1 target --username cloverren@163.com --password cloverren --no-auth-cache
   - cd target
   - svn delete fsplatform.war
   - svn commit -m "delete old war" --username cloverren@163.com --password cloverren --no-auth-cache
-  - mv -f fsplatform-0.0.1-SNAPSHOT.war fsplatform.war
+  - mv -f operating-0.0.1-SNAPSHOT.jar fsplatform.war
   - svn add fsplatform.war
   - ls -lah
   - svn commit -m "upload new war" --username cloverren@163.com --password cloverren --no-auth-cache
