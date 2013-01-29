@@ -6,7 +6,7 @@ define([], function() {
     };
     
     getApiPrefix = function() {
-        return getBasePrefix + "/api";
+        return getBasePrefix() + "/api";
     };
 
     getSecuredPrefix = function() {
