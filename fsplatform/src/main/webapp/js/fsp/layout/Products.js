@@ -7,9 +7,10 @@ define([
     "dojo/string",
     "dojo/topic",
     "dijit/layout/ContentPane",
+    "fsp/appstate",
     "fsp/layout/product/New"
 ], function(
-    array, declare, lang, str, topic, ContentPane, CreateProductPane
+    array, declare, lang, str, topic, ContentPane, appstate, CreateProductPane
 ) {
 
     var subst = str.substitute;
@@ -19,6 +20,7 @@ define([
         stack: null,
 
         startup: function() {
+            appstate.updateState({t: appstate.KEYS.PRODUCTS});
             this.inherited(arguments);
             this.set('content', "Product");
             setTimeout(lang.hitch(this, "onCreate"), 1000);
