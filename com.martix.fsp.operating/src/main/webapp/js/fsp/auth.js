@@ -6,7 +6,7 @@ define([
  ], function(lang, request, cookie, core) {
     var auth = {
         authenciate : function(/* String */ username, /* String */ password) {
-            return request(core.getUnsecuredPrefix() + "/auth", {
+            return request(core.getApiPrefix() + "/auth", {
                 method: "POST",
                 data: {
                     username: encodeURI(username),

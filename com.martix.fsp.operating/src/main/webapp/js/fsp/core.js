@@ -1,5 +1,5 @@
 define([], function() {
-    var fsp, getBasePrefix, getApiPrefix, getUnsecuredPrefix;
+    var fsp, getBasePrefix, getApiPrefix, getSecuredPrefix;
 
     getBasePrefix = function() {
         return window.location.href.slice(0, window.location.href.lastIndexOf("/"));
@@ -9,15 +9,15 @@ define([], function() {
         return getBasePrefix + "/api";
     };
 
-    getUnsecuredPrefix = function() {
-        return getBasePrefix() + "/unsecured/api";
+    getSecuredPrefix = function() {
+        return getBasePrefix() + "/secured/api";
     };
     
     fsp = {
         version: '1.0',
         getBasePrefix: getBasePrefix,
         getApiPrefix: getApiPrefix,
-        getUnsecuredPrefix: getUnsecuredPrefix
+        getSecuredPrefix: getSecuredPrefix
     };
 
     return fsp;
