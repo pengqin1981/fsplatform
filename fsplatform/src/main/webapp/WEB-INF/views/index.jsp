@@ -22,7 +22,7 @@
     <div id="fsp"></div>
     <!-- load dojo and provide config via data attribute -->
     <script data-dojo-config="async: 1, dojoBlankHtmlUrl: '<%=request.getContextPath()%>/blank.html',
-            cacheBust: false,
+            cacheBust: true,
             locale: 'zh',
             packages: [ {
                 name: 'fsp',

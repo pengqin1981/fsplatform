@@ -1,14 +1,16 @@
 define([
     "dojo/_base/declare", // declare
+    "dojo/_base/lang",
     "dojo/dom-class",
     "dojo/dom-style",
     "dijit/layout/StackController",
     "dijit/_WidgetBase",
     "dijit/_TemplatedMixin",
-    "dojo/text!./templates/Crumb.html"
+    "dojo/text!./templates/Crumb.html",
+    "fsp/appstate"
 ], function(
-    declare, domClass, domStyle, 
-    StackController, _WidgetBase, _TemplatedMixin, template
+    declare, lang, domClass, domStyle, 
+    StackController, _WidgetBase, _TemplatedMixin, template, appstate
 ) {
 
 	var Crumb = declare([_WidgetBase, _TemplatedMixin], {
@@ -26,10 +28,17 @@ define([
     var BreadCrumb = declare("fsp.widget.BreadCrumb", [StackController], {
         idxBaseClass: "breadcrumb",
         buttonWidget: Crumb,
-        pages : [],
+        pages : null,
+        state: null,
 
-        onSelectChild: function(/*dijit/_WidgetBase*/ page) {
+        postCreate: function() {
             this.inherited(arguments);
+            this.pages = [];
+            this.state = {};
+        },
+
+        updateState: function() {
+            appstate.setState(this.state);
         },
 
         /**
@@ -43,6 +52,7 @@ define([
                 oldButton= this.pane2button[this._currentChild.id];
                 oldButton.set('divided', true);
             }
+            if (page.stack && page.stack.id !== this.containerId) { return; }
 
             this.inherited(arguments);
 
@@ -58,12 +68,14 @@ define([
          * @private
          */
         onRemoveChild: function(/*dijit._Widget*/ page) {
-            var pages = this.pages;
+            var pages = this.pages, len = pages.length;
             //remove breadcrumb button
             this.inherited(arguments);
-            pages = pages.slice(0, pages.length - 1);
-            this._currentChild = pages[pages.length - 1];
-            this._currentChild.controlButton.set('divided', false);
+            this.pages = pages.slice(0, len - 1);
+            this._currentChild = this.pages[this.pages.length - 1];
+            if (this._currentChild.controlButton) {
+                this._currentChild.controlButton.set('divided', false);
+            }
         },
 
         /**
@@ -77,6 +89,14 @@ define([
             if (pages.length === 0) { return; }
 
             this.inherited(arguments);
+
+            if (page.getState) {
+                if (page.getState()[appstate.keys.TAB]) {
+                    this.state = {};
+                }
+                this.state = lang.mixin(this.state, page.getState() || {});
+                appstate.setState(this.state);
+            }
 
             if (page.id === pages[pages.length - 1].id) { return; }
 

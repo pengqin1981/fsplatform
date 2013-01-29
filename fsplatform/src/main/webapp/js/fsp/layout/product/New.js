@@ -12,12 +12,13 @@ define([
     "dojo/text!./templates/New.html",
     "fsp/widget/StandbyMixin",
     "dojo/i18n!fsp/nls/common",
+    "fsp/appstate",
     "dijit/Toolbar",
     "dijit/form/Button"
 ], function(
     array, declare, lang, str, topic,
     ContentPane, TemplatedMixin, WidgetsInTemplateMixin, template, StandbyMixin,
-    nlsCommon
+    nlsCommon, appstate
 ) {
 
     var subst = str.substitute;
@@ -30,8 +31,10 @@ define([
         nls: nlsCommon,
         templateString: template,
 
-        startup: function() {
-            this.inherited(arguments);
+        getState: function() {
+            var state = {}, keys = appstate.keys;
+            state[keys.PRODUCT_ADD] = 1;
+            return state;
         },
 
         onCreate: function() {

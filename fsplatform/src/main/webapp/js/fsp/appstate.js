@@ -1,19 +1,33 @@
 define([
      "dojo/_base/lang",
+     "dojo/topic",
      "dojo/hash",
      "dojo/io-query"
- ], function(lang, hash, ioQuery) {
+ ], function(lang, topic, hash, ioQuery) {
+
+    var state = "";
+
+    topic.subscribe("/dojo/hashchange", function(changedHash) {
+        if (state !== changedHash) {
+            state = changedHash;
+            topic.publish("/fsp/restore-state", ioQuery.queryToObject(changedHash));
+        }
+    });
+
     var appstate = {
-        updateState: function(obj) {
-            var obj = obj || {};
-            if (window.location.href.indexOf("?") >= 0) {
-                //obj = ioQuery.queryToObject(window.location.href.split("#")[1]); 
-            }
-            hash(ioQuery.objectToQuery(obj));
+        getState: function() {
+            return ioQuery.queryToObject(state);
         },
-        KEYS: {
-            'TAB': "t",
-            'PRODUCTS': "products"
+        setState: function(obj) {
+            var obj = obj || {};
+            state = ioQuery.objectToQuery(obj);
+            hash(state);
+        },
+        keys: {
+            'TAB': "tab",
+            'DASHBOARD': "dashboard",
+            'PRODUCTS': "products",
+            'PRODUCT_ADD': "product_add"
         }
     };
     return appstate;

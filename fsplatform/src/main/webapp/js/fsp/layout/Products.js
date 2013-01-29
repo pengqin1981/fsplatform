@@ -13,14 +13,25 @@ define([
     array, declare, lang, str, topic, ContentPane, appstate, CreateProductPane
 ) {
 
-    var subst = str.substitute;
+    var subst = str.substitute, keys = appstate.keys;
 
     return declare("fsp.layout.Products", [ContentPane], {
         title: "产品",
         stack: null,
 
+        getState: function() {
+            var state = {};
+            state[keys.TAB] = keys.PRODUCTS;
+            return state;
+        },
+
+        restoreState: function() {
+            if (appstate.getState()[keys.PRODUCT_ADD]) {
+                this.onCreate();
+            }
+        },
+
         startup: function() {
-            appstate.updateState({t: appstate.KEYS.PRODUCTS});
             this.inherited(arguments);
             this.set('content', "Product");
             setTimeout(lang.hitch(this, "onCreate"), 1000);

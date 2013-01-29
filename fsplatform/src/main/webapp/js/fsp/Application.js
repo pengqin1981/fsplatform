@@ -9,6 +9,8 @@ define([
     "dojo/query",
     "dojo/dom-attr",
     "dojo/NodeList-dom",
+    "dojo/hash",
+    "dojo/io-query",
     "dijit/_WidgetBase",
     "dijit/_TemplatedMixin",
     "dojo/text!./templates/Application.html",
@@ -20,7 +22,8 @@ define([
     "fsp/layout/Dashboard",
     "fsp/layout/Products"
 ], function(
-    declare, win, registry, topic, lang, on, dom, query, domAttr, nodeList,
+    declare, win, registry, topic, lang, on, dom, query, domAttr, nodeList, 
+    hash, ioQuery,
     _WidgetBase, _TemplatedMixin, template, BorderContainer, StackContainer, 
     Toaster, BreadCrumb,
     auth, DashboardPane, ProductsPane) {
@@ -28,7 +31,6 @@ define([
     return declare([_WidgetBase, _TemplatedMixin], {
 
         templateString: template,
-
         tabs: {},
 
         buildRendering: function() {
@@ -41,13 +43,20 @@ define([
                 return;
             }
 
-            setTimeout(lang.hitch(this, "init"), 500);
+            setTimeout(lang.hitch(this, "init"), 0);
         },
 
         init: function() {
             this.attachEvent();
             this.initStack();
             this.initMessager();
+            topic.subscribe("/fsp/restore-state", lang.hitch(this, "restoreState"));
+            if (hash()) {
+                this.restoreState(ioQuery.queryToObject(hash()));
+            } else {
+                this.switchTab("products", ProductsPane);
+                //this.switchTab("dashboard", DashboardPane)
+            }
         },
 
         attachEvent: function() {
@@ -69,13 +78,11 @@ define([
                 style: "height: 100%; width: 100%;"
             }, "stack");
             stack.startup();
-
-            this.switchTab("products", ProductsPane);
-            //this.switchTab("dashboard", DashboardPane);
         },
 
-        switchTab: function(name, pane) {
-            var tab = this.tabs[name+"Tab"], innerStack, controller;
+        switchTab: function(name, pane, restore) {
+            var tab = this.tabs[name+"Tab"],
+                innerStack, controller, pane, created = true;
 
             if (!tab) {
                 tab = this.tabs[name+"Tab"] = new BorderContainer({
@@ -90,6 +97,7 @@ define([
                 innerStack.addChild(new pane({
                     stack: innerStack
                 }));
+                tab.set('stack', innerStack);
                 tab.addChild(innerStack);
 
                 controller = new BreadCrumb({
@@ -97,12 +105,43 @@ define([
                     region: 'top'
                 });
                 tab.addChild(controller);
+                tab.set('breadcrumb', controller);
  
                 this.stack.addChild(tab);
+
+                created = false;
             }
+
             this.stack.selectChild(tab);
+
+            if (created && tab.get("breadcrumb")) {
+                if (restore !== true) {
+                    tab.get("breadcrumb").updateState();
+                } else {
+                    var panes = tab.get("stack").getChildren(), firspage;
+                    if (panes.length > 0) {
+                        firspage = panes[0];
+                        tab.get("stack").selectChild(firspage);
+                        if (firspage && firspage.restoreState) {
+                            firspage.restoreState();
+                        }
+                    }
+                }
+            }
         },
  
+        restoreState: function(state) {
+            switch(state.tab) {
+            case 'dashboard':
+                this.switchTab("dashboard", DashboardPane, true);
+            break;
+            case 'products':
+                this.switchTab("products", ProductsPane, true);
+            break;
+            default:
+            }
+        },
+
         onDashborad: function() {
             this.switchTab("dashboard", DashboardPane);
         },
