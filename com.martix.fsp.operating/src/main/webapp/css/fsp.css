@@ -1,20 +1,83 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
+html,body {
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
 }
 
 body {
-  padding-top: 50px; /* 60px to make the container go all the way to the bottom of the topbar */
+	padding-top: 50px;
+	/* 60px to make the container go all the way to the bottom of the topbar */
 }
-#fsp, .container{
-    height: 100%;
+
+#fsp,.container {
+	height: 100%;
 }
+
 .tundra .dijitContentPane {
 	padding: 0px;
 }
-.dijitStackController .crumb a, .dijitStackController .crumb span{
-    padding-right: 10px;
-    color: #333;
+
+.dijitStackController .crumb a,.dijitStackController .crumb span {
+	padding-right: 10px;
+	color: #333;
+}
+
+/** Override the toaster class */
+.dijitToasterClip {
+	position: absolute;
+	z-index: 5000;
+	overflow: hidden;
+}
+
+.dijitToasterContainer {
+	display: block;
+	position: absolute;
+	width: 17.5em;
+	margin: 0px;
+	font: 0.75em;
+}
+
+.dijitToasterContainer .message { /* css3 drop shadow */
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px; /* Firefox */
+	-webkit-border-radius: 5px; /* Safari, Chrome */
+	border: 1px solid #333;
+	background: #fefefe;
+	margin-top: 10px;
+}
+
+.dijitToasterContainer .title {
+	height: 1.8em;
+	line-height: 1.8em;
+	padding-left: 0.5em;
+	border-bottom: 1px dotted #ccc;
+	font-weight: bold;
+}
+
+.dijitToasterContainer .content {
+	padding: 1em;
+	padding-top: 0.7em;
+}
+
+.dijitToasterContainer hr {
+	display: none;
+}
+
+.dijitToasterContainer .error .title {
+	background: red;
+	color: #fff;
+}
+
+.dijitToasterContainer .warning .title {
+	background: yellow;
+	color: #000;
+}
+.dijitToasterContainer .success .title {
+    background: green;
+    color: #fff;
+}
+.dijitToasterContainer .info .title {
+    background: blue;
+    color: #fff;
 }

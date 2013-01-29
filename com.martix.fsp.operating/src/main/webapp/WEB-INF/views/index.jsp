@@ -8,7 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
   <link href="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dijit/themes/tundra/tundra.css" rel="stylesheet" >
-  <link href="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojox/widget/Toaster/Toaster.css" rel="stylesheet">
   <link href="<%=request.getContextPath()%>/css/fsp.css" rel="stylesheet" >
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -22,7 +21,7 @@
     <div id="fsp"></div>
     <!-- load dojo and provide config via data attribute -->
     <script data-dojo-config="async: 1, dojoBlankHtmlUrl: '<%=request.getContextPath()%>/blank.html',
-            cacheBust: true,
+            cacheBust: false,
             locale: 'zh',
             packages: [ {
                 name: 'fsp',

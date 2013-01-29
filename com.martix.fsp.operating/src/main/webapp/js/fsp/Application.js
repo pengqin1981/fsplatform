@@ -171,7 +171,7 @@ define([
             toaster.placeAt(win.body());
 
             function publishMessage(message, type) {
-                toaster.setContent(message, type);
+                toaster.setContent('<div class="message ' + type + '"><div class="title">提示:</div><div class="content">' + message + '</div></div>', type);
                 toaster.show();
             }
             topic.subscribe("error-message", function(message) {
@@ -186,6 +186,11 @@ define([
             topic.subscribe("info-message", function(message) {
                 publishMessage(message, "info");
             });
+            /*
+            publishMessage('test error', 'error');
+            publishMessage('test warning', 'warning');
+            publishMessage('test success', 'success');
+            publishMessage('test info', 'info');*/
         }
     });
  
