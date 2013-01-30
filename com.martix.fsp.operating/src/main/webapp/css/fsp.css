@@ -1,4 +1,4 @@
-html,body {
+html, body {
 	height: 100%;
 	margin: 0;
 	overflow: hidden;
@@ -88,4 +88,14 @@ body {
 .dijitToasterContainer .info .title {
     background: blue;
     color: #fff;
+}
+/** Override the gridx style*/
+#fsp .gridxBarToolBar .dijitToolbar {
+	padding:3px 0px 5px 0px;
+}
+#fsp .gridxRowOdd .gridxCell {
+	background-color: #fafafa;
+}
+#fsp .gridxBarSummary  {
+	background-color: #f0f0f0;
 }
