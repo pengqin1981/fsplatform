@@ -3,19 +3,27 @@ html,body {
 	margin: 0;
 	overflow: hidden;
 	padding: 0;
+	min-width: 1000px;
 }
 
 body {
 	padding-top: 50px;
-	/* 60px to make the container go all the way to the bottom of the topbar */
 }
 
-#fsp,.container {
-	height: 100%;
+#fsp, #fsp .container {
+	height: 90%;
 }
 
-.tundra .dijitContentPane {
+#fsp .dijitStackController {
+	border-bottom: 1px dotted #ccc;
+	padding: 3px 0px 5px 0px;
+}
+#fsp .dijitStackController .crumb {
+    font-size: 1em;
+}
+#fsp .dijitContentPane {
 	padding: 0px;
+	padding-top: 10px;
 }
 
 .dijitStackController .crumb a,.dijitStackController .crumb span {

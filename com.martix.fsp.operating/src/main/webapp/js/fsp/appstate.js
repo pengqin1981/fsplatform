@@ -27,7 +27,9 @@ define([
             'TAB': "tab",
             'DASHBOARD': "dashboard",
             'PRODUCTS': "products",
-            'PRODUCT_ADD': "product_add"
+            'PRODUCT_ADD': "product_add",
+            'USERS': "users",
+            'USER_ADD': "user_add"
         }
     };
     return appstate;

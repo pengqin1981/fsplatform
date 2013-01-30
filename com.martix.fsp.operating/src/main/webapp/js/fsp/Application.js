@@ -20,13 +20,14 @@ define([
     "fsp/widget/BreadCrumb",
     "fsp/auth",
     "fsp/layout/Dashboard",
-    "fsp/layout/Products"
+    "fsp/layout/Products",
+    "fsp/layout/Users"
 ], function(
     declare, win, registry, topic, lang, on, dom, query, domAttr, nodeList, 
     hash, ioQuery,
     _WidgetBase, _TemplatedMixin, template, BorderContainer, StackContainer, 
     Toaster, BreadCrumb,
-    auth, DashboardPane, ProductsPane) {
+    auth, DashboardPane, ProductsPane, UsersPane) {
  
     return declare([_WidgetBase, _TemplatedMixin], {
 
@@ -138,6 +139,9 @@ define([
             case 'products':
                 this.switchTab("products", ProductsPane, true);
             break;
+            case 'users':
+                this.switchTab("users", UsersPane, true);
+            break;
             default:
             }
         },
@@ -148,6 +152,10 @@ define([
 
         onProducts: function() {
             this.switchTab("products", ProductsPane);
+        },
+
+        onUsers: function() {
+            this.switchTab("users", UsersPane);
         },
 
         onProfile: function() {
