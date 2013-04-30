@@ -12,10 +12,4 @@ public class CommonView {
 		login.addObject("version", "0.1");
 		return login;
 	}
-	@RequestMapping("/test.htm")
-	public ModelAndView testPage() {
-		ModelAndView login = new ModelAndView("/WEB-INF/views/test.jsp");
-		login.addObject("version", "0.1");
-		return login;
-	}
 }

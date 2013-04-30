@@ -1,0 +1,17 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    min-width: 1000px;
+}
+
+a { color: #fff !important; }
+
+#fsp, #fsp .container {
+    height: 100%;
+}
+
+#fsp .dijitSplitterV {
+    background-color: #ccc;
+}
