@@ -1,17 +1,24 @@
 define([
     "dojo/_base/declare",
+    "dojo/_base/lang",
+    "dojo/topic",
     "dijit/layout/BorderContainer",
-    "dijit/layout/TabContainer",
+    "dijit/layout/StackContainer",
     "dijit/layout/ContentPane",
     "fsp/layout/Header",
     "fsp/layout/Navigator"
 ], function(
-    declare, BorderContainer, TabContainer, ContentPane, Header, Navigator) {
+    declare, lang, topic, 
+    BorderContainer, StackContainer, ContentPane, Header, Navigator) {
  
     return declare([], {
+        stacks: {},
+        stacksContainer: null,
         startup: function() {
-         // create the BorderContainer and attach it to our appLayout div
-            var appLayout = new BorderContainer({
+            var appLayout, stacksContainer;
+
+            // create the BorderContainer and attach it to our appLayout div
+            appLayout = new BorderContainer({
                 design: "headline"
             }, "fsp");
              
@@ -29,16 +36,34 @@ define([
                     splitter: true
                 })
             );
-            appLayout.addChild(
-                new ContentPane({
-                    region: "center",
-                    id: "fsp-stacks",
-                    content: "Sidebar content (Body)",
-                    splitter: true
-                })
-            );
+            stacksContainer = this.stacksContainer = new StackContainer({
+                region: "center",
+                id: "fsp-stacks",
+                splitter: true
+            })
+            appLayout.addChild(stacksContainer);
             // start up and do layout
             appLayout.startup();
+ 
+            topic.subscribe("/fsplatform/navigator/select", lang.hitch(this, "addOrSelectStack"));
+        },
+        addOrSelectStack: function(params) {
+            var item, stacks = this.stacks, stack;
+            if (params && params.length > 0) {
+                item = params[0];
+                if (stacks[item.id]) {
+                    stack = stacks[item.id];
+                } else {
+                    stack = stacks[item.id] = new StackContainer({
+                        id: item.id + "-stack"
+                    });
+                    this.stacksContainer.addChild(stack);
+                    require([item.link], function(Pane) {
+                        stack.addChild(new Pane());
+                    });
+                }
+                this.stacksContainer.selectChild(stack);
+            }
         }
     });
  

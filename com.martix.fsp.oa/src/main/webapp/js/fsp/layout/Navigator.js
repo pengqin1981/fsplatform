@@ -4,6 +4,7 @@ define([
     "dojo/_base/declare",
     "dojo/_base/lang",
     "dojo/on",
+    "dojo/topic",
     "dijit/layout/ContentPane",
     "dijit/_TemplatedMixin",
     "dijit/_WidgetsInTemplateMixin",
@@ -13,7 +14,7 @@ define([
     "dijit/tree/ObjectStoreModel",
     "dijit/Tree"
 ], function(
-    declare, lang, on,
+    declare, lang, on, topic,
     ContentPane, TemplatedMixin, WidgetsInTemplateMixin, template,
     AccordionContainer, Memory, ObjectStoreModel, Tree) {
 
@@ -24,55 +25,69 @@ define([
         postCreate: function() {
             var aContainer;
             aContainer = this.aContainer = new AccordionContainer({style:"height: 100%"}, this.navNode);
-            
             this.addOALinks();
-            aContainer.addChild(new ContentPane({
-                title:"模板管理",
-                content:"模板管理菜单"
-            }));
-            aContainer.addChild(new ContentPane({
-                title:"系统管理",
-                content:"系统管理菜单"
-            }));
+            this.addTempLinks();
+            this.addSysLinks();
             aContainer.startup();
         },
 
-        addOALinks: function() {
-            var oaStore, oaModel, oaPane, oaTree;
+        addLinks: function(data, title, root) {
+            var pane, store, model, tree;
 
-            oaStore = new Memory({
-                data: [
-                    { id: 'root', name:'常用功能', link: ""},
-                    { id: 'task', name:'代办任务', link: "", parent: 'root'}
-                ],
+            pane = new ContentPane({
+                title: title
+            });
+
+            this.aContainer.addChild(pane);
+
+            if (data.length == 0) { return; }
+
+            store = new Memory({
+                data: data,
                 getChildren: function(object){
                     return this.query({parent: object.id});
                 }
             });
 
-            oaModel = new ObjectStoreModel({
-                store: oaStore,
-                query: {id: 'root'}
+            model = new ObjectStoreModel({
+                store: store,
+                query: {id: root}
             });
 
-            oaPane = new ContentPane({
-                title:"OA任务"
-            });
+            
 
-            oaTree = new Tree({
-                model: oaModel,
+            tree = new Tree({
+                model: model,
                 onClick: lang.hitch(this, this.onClick)
             });
 
-            this.aContainer.addChild(oaPane);
-
             setTimeout(function() {
-                oaPane.set("content", oaTree);
-            }, 500);
+                pane.set("content", tree);
+            }, 0);
+        },
+
+        addOALinks: function() {
+            this.addLinks([
+               { id: 'oa', name:'常用功能', link: ""},
+               { id: 'task', name:'待办任务', link: "", parent: 'oa'}
+            ], "OA任务", "oa");
+        },
+
+        addTempLinks: function() {
+            this.addLinks([], "模板管理", 'temp');
+        },
+
+        addSysLinks: function() {
+            this.addLinks([
+               { id: 'sys', name:'系统管理', link: ""},
+               { id: 'user', name:'用户管理', link: "fsp/layout/Users", parent: 'sys'}
+            ], "系统管理", "sys");
         },
 
         onClick: function(item) {
-            console.info(item);
+            if (item.link) {
+                topic.publish("/fsplatform/navigator/select", [item]);
+            }
         }
     });
 });
