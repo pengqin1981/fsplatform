@@ -58,6 +58,7 @@ define([
 
             tree = new Tree({
                 model: model,
+                persist: false,
                 onClick: lang.hitch(this, this.onClick)
             });
 

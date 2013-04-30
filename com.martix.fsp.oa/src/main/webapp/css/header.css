@@ -16,3 +16,5 @@
 	display: inline-block;
     float: right;
 }
+
+#fsp-header .links a { color: #fff; }

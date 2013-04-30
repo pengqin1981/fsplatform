@@ -6,12 +6,29 @@ html, body {
     min-width: 1000px;
 }
 
-a { color: #fff !important; }
-
 #fsp, #fsp .container {
     height: 100%;
 }
 
 #fsp .dijitSplitterV {
-    background-color: #ddd;
+    /*background-color: #ddd;*/
+}
+
+#fsp .dijitStackController {
+    border-bottom: 1px dotted #ccc;
+    padding: 5px 10px;
+    position: relative;
+}
+#fsp .dijitStackController .crumb {
+    padding: 0px 5px;
+}
+#fsp .dijitStackController .crumb a{
+    color: #000;
+}
+#fsp .dijitStackController .crumb span{
+    padding-left: 10px;
+}
+
+.dbootstrap .gridxBarToolBar .dijitToolbar {
+    margin-bottom: 0px;
 }

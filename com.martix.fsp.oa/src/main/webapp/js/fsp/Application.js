@@ -6,10 +6,11 @@ define([
     "dijit/layout/StackContainer",
     "dijit/layout/ContentPane",
     "fsp/layout/Header",
-    "fsp/layout/Navigator"
+    "fsp/layout/Navigator",
+    "fsp/widget/BreadCrumb"
 ], function(
     declare, lang, topic, 
-    BorderContainer, StackContainer, ContentPane, Header, Navigator) {
+    BorderContainer, StackContainer, ContentPane, Header, Navigator, BreadCrumb) {
  
     return declare([], {
         stacks: {},
@@ -54,12 +55,30 @@ define([
                 if (stacks[item.id]) {
                     stack = stacks[item.id];
                 } else {
-                    stack = stacks[item.id] = new StackContainer({
-                        id: item.id + "-stack"
+                    stack = stacks[item.id] = new BorderContainer({
                     });
                     this.stacksContainer.addChild(stack);
+
+                    stack.containers = new StackContainer({
+                        id: item.id + "-stack",
+                        region: "center",
+                        "class": "paneContainer"
+                    });
+                    stack.addChild(stack.containers);
+
+                    stack.breadcrumb = new BreadCrumb({
+                        containerId: item.id + "-stack",
+                        region: 'top',
+                        splitter: false
+                    });
+                    
+                    stack.addChild(stack.breadcrumb);
+
                     require([item.link], function(Pane) {
-                        stack.addChild(new Pane());
+                        stack.containers.addChild(new Pane({
+                            stack: stack.containers
+                        }));
+                        stack.layout();
                     });
                 }
                 this.stacksContainer.selectChild(stack);
