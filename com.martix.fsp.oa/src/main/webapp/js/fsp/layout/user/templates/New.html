@@ -1,4 +1,10 @@
 <div>
+    <div data-dojo-type="dijit/form/Form" data-dojo-attach-point="form" encType="multipart/form-data">
+        <p><label>姓名:</label></p>
+        <div><input type="text" name="name" required="true" data-dojo-type="dijit/form/ValidationTextBox"/></div>
+    </div>
+    <div class="btn-bar">
     <button data-dojo-type="dijit.form.Button" data-dojo-props="label: '${nls.create}', class: '', iconClass: 'icon-save'" data-dojo-attach-event="onClick:onCreate"></button>
     <button data-dojo-type="dijit.form.Button" data-dojo-props="label: '${nls.cancel}', class: '', iconClass: 'icon-remove'" data-dojo-attach-event="onClick:onCancel"></button>
+    </div>
 </div>

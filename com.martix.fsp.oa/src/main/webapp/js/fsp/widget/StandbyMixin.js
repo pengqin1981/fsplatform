@@ -12,7 +12,7 @@ define([
                 target: this.standbyNode || this.domNode,
                 color: '#fdfdfd',
                 duration: 0,
-                image: "images/loading.gif"
+                image: "images/waiting.gif"
             }, domConstr.create("div", {}, document.body));
             this.standby.startup();
         }

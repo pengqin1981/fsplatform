@@ -54,26 +54,28 @@ define([
             this.initGrid();
         },
 
-        initGrid: function() {
-            var store, structure, grid ;
-
-            store = new Memory({
+        getStore: function() {
+            return new Memory({
                 data: [
-                    { id: 1, name: 'John', score: 130, city: 'New York', birthday: '1980/2/5'},
-                    { id: 2, name: 'Alice', score: 123, city: 'Washington', birthday: '1984/3/7'},
-                    { id: 3, name: 'Lee', score: 149, city: 'Shanghai', birthday: '1986/10/8'},
-                    { id: 4, name: 'Mike', score: 100, city: 'London', birthday: '1988/8/12'},
-                    { id: 5, name: 'Tom', score: 89, city: 'San Francisco', birthday: '1990/1/21'}
-                ]
+                   { id: 1, name: 'John', score: 130, city: 'New York', birthday: '1980/2/5'},
+                   { id: 2, name: 'Alice', score: 123, city: 'Washington', birthday: '1984/3/7'},
+                   { id: 3, name: 'Lee', score: 149, city: 'Shanghai', birthday: '1986/10/8'},
+                   { id: 4, name: 'Mike', score: 100, city: 'London', birthday: '1988/8/12'},
+                   { id: 5, name: 'Tom', score: 89, city: 'San Francisco', birthday: '1990/1/21'}
+               ]
             });
+        },
+        initGrid: function() {
+            var structure, grid ;
+
             structure = [
-                { id: 'name', field: 'name', name: 'Name', width: '50%'},
-                { id: 'city', field: 'city', name: 'City', width: '40%'},
-                { id: 'score', field: 'score', name: 'Score', width: '10%'}
+                { id: 'name', field: 'name', name: '姓名', width: '50%'},
+                { id: 'city', field: 'city', name: '所在城市', width: '40%'},
+                { id: 'score', field: 'score', name: '绩效评分', width: '10%'}
             ];
-            grid = Grid({
+            grid = this.grid = Grid({
                 cacheClass: Cache,
-                store: store,
+                store: this.getStore(),
                 structure: structure,
                 modules: [
                     Focus, Filter, CellWidget,
@@ -102,7 +104,11 @@ define([
         },
 
 
-        onRefresh: function() {},
+        onRefresh: function() {
+            var grid = this.grid;
+            grid.set("store", null);
+            grid.set("store", this.getStore());
+        },
  
         onCreate: function() {
             var stack = this.stack,

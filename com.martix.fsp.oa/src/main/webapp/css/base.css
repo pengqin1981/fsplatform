@@ -15,7 +15,7 @@ html, body {
 }
 
 #fsp .dijitStackController {
-    border-bottom: 1px dotted #ccc;
+    border-bottom: 1px solid #ccc;
     padding: 5px 10px;
     position: relative;
 }
@@ -27,4 +27,9 @@ html, body {
 }
 #fsp .dijitStackController .crumb span{
     padding-left: 10px;
+}
+#fsp .btn-bar {
+	border-top: 1px solid #ccc;
+	margin-top: 10px;
+	padding-top: 10px;
 }
