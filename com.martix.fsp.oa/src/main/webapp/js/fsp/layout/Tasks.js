@@ -23,23 +23,23 @@ define([
     "gridx/modules/pagination/PaginationBar",
     "dijit/form/Button",
     "fsp/appstate",
-    "fsp/layout/user/New"
+    "fsp/layout/task/New"
 ], function(
     array, declare, lang, str, topic, ContentPane,
     Grid, Memory, Cache, Focus, Filter, CellWidget, ExtendedSelectedRow,
     SingleSort, RowHeader, IndirectSelect, ColumnResizer, ToolBar,
-    Pagination, PaginationBar, Button, appstate, CreateUserPane
+    Pagination, PaginationBar, Button, appstate, CreateTaskPane
 ) {
 
     var subst = str.substitute, keys = appstate.keys;
 
-    return declare("fsp.layout.Users", [ContentPane], {
-        title: "用户管理",
+    return declare("fsp.layout.Tasks", [ContentPane], {
+        title: "待办任务",
         stack: null,
 
         getState: function() {
             var state = {};
-            state[keys.TAB] = keys.USERS;
+            state[keys.TAB] = keys.Tasks;
             return state;
         },
 
@@ -106,7 +106,7 @@ define([
  
         onCreate: function() {
             var stack = this.stack,
-                tab = new CreateUserPane({
+                tab = new CreateTaskPane({
                     stack: stack
                 });
             stack.addChild(tab);

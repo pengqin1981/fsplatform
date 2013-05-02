@@ -26,8 +26,8 @@ define([
         keys: {
             'TAB': "tab",
             'DASHBOARD': "dashboard",
-            'PRODUCTS': "products",
-            'PRODUCT_ADD': "product_add",
+            'TASKS': "tasks",
+            'TASK_ADD': "task_add",
             'USERS': "users",
             'USER_ADD': "user_add"
         }

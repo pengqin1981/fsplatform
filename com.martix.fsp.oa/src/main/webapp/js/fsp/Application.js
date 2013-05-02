@@ -55,8 +55,7 @@ define([
                 if (stacks[item.id]) {
                     stack = stacks[item.id];
                 } else {
-                    stack = stacks[item.id] = new BorderContainer({
-                    });
+                    stack = stacks[item.id] = new BorderContainer({});
                     this.stacksContainer.addChild(stack);
 
                     stack.containers = new StackContainer({

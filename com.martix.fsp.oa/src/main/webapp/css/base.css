@@ -28,7 +28,3 @@ html, body {
 #fsp .dijitStackController .crumb span{
     padding-left: 10px;
 }
-
-.dbootstrap .gridxBarToolBar .dijitToolbar {
-    margin-bottom: 0px;
-}

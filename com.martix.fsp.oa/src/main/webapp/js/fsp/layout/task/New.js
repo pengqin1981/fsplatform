@@ -23,10 +23,10 @@ define([
 
     var subst = str.substitute;
 
-    return declare("fsp.layout.product.New", [
+    return declare("fsp.layout.task.New", [
         ContentPane, TemplatedMixin, WidgetsInTemplateMixin, StandbyMixin
     ], {
-        title: "新增产品",
+        title: "新增任务",
         stack: null,
         nls: nlsCommon,
         templateString: template,

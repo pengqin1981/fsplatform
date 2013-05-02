@@ -22,6 +22,7 @@ define([
     return declare("fsp.layout.Navigator", [ContentPane, TemplatedMixin, WidgetsInTemplateMixin], {
         templateString: template,
         aContainer: null,
+        selectedNodes: {},
         postCreate: function() {
             var aContainer;
             aContainer = this.aContainer = new AccordionContainer({style:"height: 100%"}, this.navNode);
@@ -57,6 +58,7 @@ define([
             
 
             tree = new Tree({
+                id: root + '_tree',
                 model: model,
                 persist: false,
                 onClick: lang.hitch(this, this.onClick)
@@ -70,7 +72,7 @@ define([
         addOALinks: function() {
             this.addLinks([
                { id: 'oa', name:'常用功能', link: ""},
-               { id: 'task', name:'待办任务', link: "", parent: 'oa'}
+               { id: 'task', name:'待办任务', link: "fsp/layout/Tasks", parent: 'oa'}
             ], "OA任务", "oa");
         },
 
@@ -85,9 +87,20 @@ define([
             ], "系统管理", "sys");
         },
 
-        onClick: function(item) {
+        onClick: function(item, node) {
+            var treeId = node.tree.get("id");
+            this.selectedNodes[treeId] = node;
+            this.clearOtherSelected(treeId);
             if (item.link) {
                 topic.publish("/fsplatform/navigator/select", [item]);
+            }
+        },
+
+        clearOtherSelected: function(currentId) {
+            for (var id in this.selectedNodes) {
+                if (id !== currentId) {
+                    this.selectedNodes[id].setSelected(false);
+                }
             }
         }
     });
