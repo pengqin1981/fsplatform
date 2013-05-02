@@ -13,7 +13,8 @@ define([
     "fsp/widget/StandbyMixin",
     "dojo/i18n!fsp/nls/common",
     "fsp/appstate",
-    "dijit/Toolbar",
+    "dijit/form/Form",
+    "dijit/form/ValidationTextBox",
     "dijit/form/Button"
 ], function(
     array, declare, lang, str, topic,
@@ -39,9 +40,11 @@ define([
 
         onCreate: function() {
             var that = this;
+            if (!this.form.validate()) { return; }
             this.standby.show();
             setTimeout(function() {
                 that.standby.hide();
+                that.onCancel();
                 topic.publish("success-message", "新增成功!");
             }, 3000);
         },
