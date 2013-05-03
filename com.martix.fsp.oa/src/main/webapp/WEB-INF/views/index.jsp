@@ -31,7 +31,7 @@
             }, {
                 location: '<%=request.getContextPath()%>/js/dbootstrap',
                 name: 'dbootstrap'
-            }]"
+            }]" 
             src="//yandex.st/dojo/1.8.3/dojo/dojo.js"></script>
             <!-- src="//yandex.st/dojo/1.8.3/dojo/dojo.js"></script> -->
     <!-- application -->
