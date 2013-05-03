@@ -32,7 +32,7 @@
                 location: '<%=request.getContextPath()%>/js/dbootstrap',
                 name: 'dbootstrap'
             }]"
-            src="<%=request.getContextPath()%>/js/dojo/dojo/dojo.js"></script>
+            src="//yandex.st/dojo/1.8.3/dojo/dojo.js"></script>
             <!-- src="//yandex.st/dojo/1.8.3/dojo/dojo.js"></script> -->
     <!-- application -->
     <script src="<%=request.getContextPath()%>/js/app/index.js" type="text/javascript"></script>
