@@ -20,3 +20,4 @@ script:
   - svn add fsplatform.war
   - ls -lah
   - svn commit -m "upload new war" --username cloverren@163.com --password cloverren --no-auth-cache
+  
