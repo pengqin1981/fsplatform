@@ -1,0 +1,18 @@
+.dbootstrap .gridxBarToolBar .dijitToolbar {
+    margin-bottom: 0px;
+}
+.dbootstrap .gridxRowHeaderRow .dijitCheckBox, .dbootstrap .gridxRowHeaderRow .dijitRadio, .dbootstrap .gridxRowHeaderRow .dijitCheckBoxInput {
+    width: 14px;
+    height: 14px;
+}
+.dbootstrap .gridxHeaderRow .dijitCheckBox, .dbootstrap .gridxHeaderRow .dijitRadio, .dbootstrap .gridxHeaderRow .dijitCheckBoxInput {
+    width: 14px;
+    height: 14px;
+}
+.dbootstrap .gridx .gridxIndirectSelectionCheckBoxInner {
+    font-size: 8px;
+    line-height: 8px;
+    margin-top: -3px;
+    position: relative;
+}
+ 

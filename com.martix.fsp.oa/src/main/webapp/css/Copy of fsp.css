@@ -1,0 +1,99 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	min-width: 1000px;
+}
+
+#fsp, #fsp .container {
+	height: 100%;
+}
+
+
+
+#fsp .dijitStackController {
+	border-bottom: 1px dotted #ccc;
+	padding: 3px 0px 5px 0px;
+}
+#fsp .dijitStackController .crumb {
+    font-size: 1em;
+}
+#fsp .dijitContentPane {
+	padding: 0px;
+	padding-top: 10px;
+}
+
+.dijitStackController .crumb a,.dijitStackController .crumb span {
+	padding-right: 10px;
+	color: #333;
+}
+
+/** Override the toaster class */
+.dijitToasterClip {
+	position: absolute;
+	z-index: 5000;
+	overflow: hidden;
+}
+
+.dijitToasterContainer {
+	display: block;
+	position: absolute;
+	width: 17.5em;
+	margin: 0px;
+	font: 0.75em;
+}
+
+.dijitToasterContainer .message { /* css3 drop shadow */
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px; /* Firefox */
+	-webkit-border-radius: 5px; /* Safari, Chrome */
+	border: 1px solid #333;
+	background: #fefefe;
+	margin-top: 10px;
+}
+
+.dijitToasterContainer .title {
+	height: 1.8em;
+	line-height: 1.8em;
+	padding-left: 0.5em;
+	border-bottom: 1px dotted #ccc;
+	font-weight: bold;
+}
+
+.dijitToasterContainer .content {
+	padding: 1em;
+	padding-top: 0.7em;
+}
+
+.dijitToasterContainer hr {
+	display: none;
+}
+
+.dijitToasterContainer .error .title {
+	background: red;
+	color: #fff;
+}
+
+.dijitToasterContainer .warning .title {
+	background: yellow;
+	color: #000;
+}
+.dijitToasterContainer .success .title {
+    background: green;
+    color: #fff;
+}
+.dijitToasterContainer .info .title {
+    background: blue;
+    color: #fff;
+}
+/** Override the gridx style*/
+#fsp .gridxBarToolBar .dijitToolbar {
+	padding:3px 0px 5px 0px;
+}
+#fsp .gridxRowOdd .gridxCell {
+	background-color: #fafafa;
+}
+#fsp .gridxBarSummary  {
+	background-color: #f0f0f0;
+}

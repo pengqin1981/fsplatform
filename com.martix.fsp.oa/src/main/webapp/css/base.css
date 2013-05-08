@@ -1,0 +1,35 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    min-width: 1000px;
+}
+
+#fsp, #fsp .container {
+    height: 100%;
+}
+
+#fsp .dijitSplitterV {
+    /*background-color: #ddd;*/
+}
+
+#fsp .dijitStackController {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 10px;
+    position: relative;
+}
+#fsp .dijitStackController .crumb {
+    padding: 0px 5px;
+}
+#fsp .dijitStackController .crumb a{
+    color: #000;
+}
+#fsp .dijitStackController .crumb span{
+    padding-left: 10px;
+}
+#fsp .btn-bar {
+	border-top: 1px solid #ccc;
+	margin-top: 10px;
+	padding-top: 10px;
+}

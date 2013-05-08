@@ -1,0 +1,24 @@
+#fsp-header.dijitContentPane {
+    padding: 0px;
+    background-color: #222;
+    color: #fff;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 10px;
+    border-bottom: 4px solid #3399cc;
+}
+
+#fsp-header .logo {
+	background: url("../images/logo.png") no-repeat 0px 7px;
+	background-size: 24px;
+	display: inline-block;
+	padding-left: 30px;
+	float: left;
+}
+
+#fsp-header .links {
+	display: inline-block;
+    float: right;
+}
+
+#fsp-header .links a { color: #fff; }
